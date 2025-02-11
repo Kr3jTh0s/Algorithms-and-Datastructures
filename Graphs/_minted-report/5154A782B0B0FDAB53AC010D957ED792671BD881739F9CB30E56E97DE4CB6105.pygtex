@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{connect}\PYG{p}{(}\PYG{n}{City}\PYG{+w}{ }\PYG{n}{nxt}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Integer}\PYG{+w}{ }\PYG{n}{dst}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// start at index 0}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{neighbours}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// if not empty}
+\PYG{+w}{      }\PYG{k}{while}\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{size}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{// compare loop}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{neighbours}\PYG{o}{[}\PYG{n}{i}\PYG{o}{++]}\PYG{p}{.}\PYG{n+na}{city}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{nxt}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// return if match}
+\PYG{+w}{      }\PYG{n}{Connection}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{copy}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Connection}\PYG{o}{[++}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{size}\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// increment size/make copy}
+\PYG{+w}{      }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{j}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{copy}\PYG{o}{[}\PYG{n}{j}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{neighbours}\PYG{o}{[}\PYG{n}{j}\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// copy}
+\PYG{+w}{      }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{neighbours}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{copy}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// set neighbours as copy}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{neighbours}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Connection}\PYG{p}{(}\PYG{n}{nxt}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dst}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// add connection}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

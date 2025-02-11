@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{City}\PYG{+w}{ }\PYG{n+nf}{lookup}\PYG{p}{(}\PYG{n}{String}\PYG{+w}{ }\PYG{n}{city}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{Integer}\PYG{+w}{ }\PYG{n}{indx}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{hash}\PYG{p}{(}\PYG{n}{city}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mod}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// generate hash index}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{cities}\PYG{o}{[}\PYG{n}{indx}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// if empty entry}
+\PYG{+w}{      }\PYG{n}{City}\PYG{+w}{ }\PYG{n}{current}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{cities}\PYG{o}{[}\PYG{n}{indx}\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// current city}
+\PYG{+w}{      }\PYG{n}{City}\PYG{+w}{ }\PYG{n}{previous}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// previous city}
+\PYG{+w}{      }\PYG{k}{while}\PYG{p}{(}\PYG{n}{current}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// until tail node is reached}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{n}{current}\PYG{p}{.}\PYG{n+na}{name}\PYG{p}{.}\PYG{n+na}{compareTo}\PYG{p}{(}\PYG{n}{city}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{current}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// if match}
+\PYG{+w}{        }\PYG{n}{previous}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{current}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// set previous to current}
+\PYG{+w}{        }\PYG{n}{current}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{current}\PYG{p}{.}\PYG{n+na}{next}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// move current to next city}
+\PYG{+w}{      }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{      }\PYG{n}{previous}\PYG{p}{.}\PYG{n+na}{next}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{City}\PYG{p}{(}\PYG{n}{city}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// add to next of tail}
+\PYG{+w}{      }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{previous}\PYG{p}{.}\PYG{n+na}{next}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// return city}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{cities}\PYG{o}{[}\PYG{n}{indx}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{City}\PYG{p}{(}\PYG{n}{city}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// add to empty entry}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{cities}\PYG{o}{[}\PYG{n}{indx}\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// return city}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

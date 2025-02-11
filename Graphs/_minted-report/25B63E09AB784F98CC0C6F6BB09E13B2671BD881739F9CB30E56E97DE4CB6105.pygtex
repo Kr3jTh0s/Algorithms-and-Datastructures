@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{n}{Integer}\PYG{+w}{ }\PYG{n+nf}{shortest}\PYG{p}{(}\PYG{n}{City}\PYG{+w}{ }\PYG{n}{from}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{City}\PYG{+w}{ }\PYG{n}{to}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Paths}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Integer}\PYG{+w}{ }\PYG{n}{time}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n}{from}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{to}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// destination found}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{opt}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{time}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{opt}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// if time is greater than opt}
+\PYG{+w}{    }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{sp}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{// for each city in the stack}
+\PYG{+w}{      }\PYG{k}{if}\PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{path}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{from}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// if from is in the stack}
+\PYG{+w}{    }\PYG{n}{Integer}\PYG{+w}{ }\PYG{n}{shrt}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// declare shrt}
+\PYG{+w}{    }\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{path}\PYG{o}{[}\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{sp}\PYG{o}{++]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{from}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// add from to stack}
+\PYG{+w}{    }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{from}\PYG{p}{.}\PYG{n+na}{size}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// for each connection to from}
+\PYG{+w}{      }\PYG{n}{Connection}\PYG{+w}{ }\PYG{n}{conn}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{from}\PYG{p}{.}\PYG{n+na}{neighbours}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// get connection}
+\PYG{+w}{      }\PYG{n}{shrt}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{time}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{conn}\PYG{p}{.}\PYG{n+na}{distance}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// time so far}
+\PYG{+w}{      }\PYG{n}{Integer}\PYG{+w}{ }\PYG{n}{dst}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{shortest}\PYG{p}{(}\PYG{n}{conn}\PYG{p}{.}\PYG{n+na}{city}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{to}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{shrt}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// recursive}
+\PYG{+w}{      }\PYG{k}{if}\PYG{p}{(}\PYG{n}{dst}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// if path exists}
+\PYG{+w}{        }\PYG{n}{shrt}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{dst}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// add dst time onto time so far}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{opt}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{n}{shrt}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{opt}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{opt}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{shrt}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// if no opt path}
+\PYG{+w}{      }\PYG{p}{\PYGZcb{}}\PYG{+w}{                             }\PYG{c+c1}{// exists or if shrt is faster than opt}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{path}\PYG{o}{[}\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{sp}\PYG{o}{\PYGZhy{}\PYGZhy{}]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// remove from of stack}
+\PYG{+w}{    }\PYG{n}{shrt}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{.}\PYG{n+na}{opt}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// set shrt to fastet path so far}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{shrt}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// return shrt}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

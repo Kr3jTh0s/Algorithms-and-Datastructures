@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k}{if}\PYG{p}{(}\PYG{n}{root}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// check empty}
+\PYG{+w}{    }\PYG{n}{root}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Node}\PYG{p}{(}\PYG{n}{value}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// add node}
+\PYG{+w}{    }\PYG{k}{return}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// exit}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{n}{Node}\PYG{+w}{ }\PYG{n}{cur}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{root}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// current node}
+\PYG{+w}{  }\PYG{n}{Node}\PYG{+w}{ }\PYG{n}{pre}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// previous node}
+\PYG{+w}{  }\PYG{k}{while}\PYG{p}{(}\PYG{n}{cur}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// while current isn\PYGZsq{}t empty}
+\PYG{+w}{    }\PYG{n}{pre}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cur}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// set previous to current}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n}{cur}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{cur}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cur}\PYG{p}{.}\PYG{n+na}{left}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// if lower value}
+\PYG{+w}{    }\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{p}{(}\PYG{n}{cur}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{cur}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cur}\PYG{p}{.}\PYG{n+na}{right}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// if higher value}
+\PYG{+w}{    }\PYG{k}{else}\PYG{+w}{ }\PYG{k}{return}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// exit if match}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{k}{if}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{.}\PYG{n+na}{value}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{value}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{pre}\PYG{p}{.}\PYG{n+na}{left}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Node}\PYG{p}{(}\PYG{n}{value}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// if lower value}
+\PYG{+w}{  }\PYG{k}{else}\PYG{+w}{ }\PYG{n}{pre}\PYG{p}{.}\PYG{n+na}{right}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Node}\PYG{p}{(}\PYG{n}{value}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// if higher value}
+\end{Verbatim}

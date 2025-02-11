@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{      }\PYG{n}{City}\PYG{+w}{ }\PYG{n}{one}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{lookup}\PYG{p}{(}\PYG{n}{col}\PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{]}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// get city \PYGZdq{}from\PYGZdq{}}
+\PYG{+w}{      }\PYG{n}{City}\PYG{+w}{ }\PYG{n}{two}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{lookup}\PYG{p}{(}\PYG{n}{col}\PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{]}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// get city \PYGZdq{}to\PYGZdq{}}
+\PYG{+w}{      }\PYG{n}{Integer}\PYG{+w}{ }\PYG{n}{dist}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Integer}\PYG{p}{.}\PYG{n+na}{valueOf}\PYG{p}{(}\PYG{n}{col}\PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{]}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// get distance}
+\PYG{+w}{      }\PYG{n}{one}\PYG{p}{.}\PYG{n+na}{connect}\PYG{p}{(}\PYG{n}{two}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dist}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// connect from and to}
+\PYG{+w}{      }\PYG{n}{two}\PYG{p}{.}\PYG{n+na}{connect}\PYG{p}{(}\PYG{n}{one}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dist}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// connect to and from}
+\end{Verbatim}

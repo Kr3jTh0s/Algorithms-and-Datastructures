@@ -1,0 +1,303 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} 
+
+\usepackage{minted}
+
+\begin{document}
+
+\title{
+  \textbf{Graphs and Shortest Path Java}
+}
+\author{Alexander Alvarez}
+\date{HT P1 2024}
+
+\maketitle
+
+\section*{Introduction}
+
+A graph data structure will be implemented and the shortest path 
+between different pairs of nodes will be measured. The general 
+behaviours of the graph data structure are described as well as how 
+the operations were created and implemented for benchmarking.
+
+\section*{Graph}
+
+A graph data structure manages data using a cluster of nodes or 
+$vertices$ where the connections between two vertices are called 
+$edges$. Edges can be directed to be either one- or two-way. A 
+collection of edges that connects two vertices that are not directly 
+connected is called a $path$. 
+
+There are several types of graphs but the type discussed in this report 
+is called a connected undirected cyclic graph. A cyclic graph contains 
+paths that form a cycle and an undirected graph has edges that are 
+two-way. The graph being connected means that one can find a path 
+from one vertex, that leads to any other vertex whithin the graph.
+
+\subsection*{Map}
+
+A CSV file is provided containing several connections between different 
+pairs of Swedish cities with the distance in minutes. The graph is to be 
+implemented as a map consisting of an array with vertices where each vertex 
+is a different city. Each city has their own array of connections to other 
+cities.
+
+\subsection*{City and Connection}
+
+The {\tt City} and {\tt Connection} class is declared before creating the
+map. The {\tt City} class contains the instance variables:
+\begin{itemize}
+  \item {\tt name} which holds the name of the city
+  \item {\tt next} which is a reference pointer to another city
+  \item {\tt neighbours[]} which is an array of connections to other cities
+  \item {\tt size} which is the size of the {\tt neighbours} array
+\end{itemize}
+The constructor applies the name to a city with a parameter variable and
+declares the {\tt neighbours} array together with it's size. The use of 
+the {\tt next} variable will become important later, but for now it's set 
+to {\tt null} in the constructor.
+
+\begin{minted}{java}
+  public City(String name){
+    this.name = name; // apply parameter name
+    this.next = null; // next city is null
+    this.size = 1; // start size 
+    this.neighbours = new Connection[this.size]; // declare array
+  }
+\end{minted}
+
+Over at the {\tt Connection} class we only have two instance variables 
+and the constructor. The instance variables are {\tt city} which holds a
+{\tt City} variable, and {\tt distance} which is an integer. The 
+constructor has two parameters where one is a connected city which
+is applied to the {\tt city} variable, and the other is the connection's 
+distance which is applied to the {\tt distance} variable.
+
+Back to the {\tt City} class we have an instance method {\tt connect}
+which adds a city to the {\tt neighbours} array. The method checks if
+the {\tt neighbours} array is empty and adds the connection if it is.
+If the array is not empty, the method then compares to see if the 
+connection already exists and discontinues if a match is found. If no 
+match is found, then the method increments {\tt size} by 1 and a 
+temporary array {\tt copy} is created with the new size and with the 
+elements of {\tt neighbours}. The bigger {\tt copy} array is then set 
+as the {\tt neighbours} array where the new connection finally can be 
+added.
+
+\begin{minted}{java}
+  public void connect(City nxt, Integer dst){
+    int i = 0; // start at index 0
+    if(this.neighbours[i] != null){ // if not empty
+      while(i < this.size) // compare loop
+        if(this.neighbours[i++].city == nxt) return; // return if match
+      Connection[] copy = new Connection[++this.size]; // increment size/make copy
+      for(int j = 0; j < i; j++) copy[j] = this.neighbours[j]; // copy
+      this.neighbours = copy; // set neighbours as copy
+    }
+    this.neighbours[i] = new Connection(nxt, dst); // add connection
+  }
+\end{minted}
+
+The {\tt connect} method basically works like a dynamic stack that
+only adds new entries. 
+
+\subsection*{Creating the map}
+
+The {\tt Map} class creates the map and includes the {\tt City} instance 
+variable {\tt cities[]} which is the array containing all cities. The 
+integer instance variable {\tt mod} is also included and will become 
+important shortly.
+
+The constructor declares the {\tt cities} array with size {\tt mod} where 
+it then reads each row of the CSV file. Each row has 3 columns where 
+connections between cities are set up as $from,to,distance$. The 
+constructor runs the instance method {\tt lookup} on the cities of the 
+first two columns. 
+
+The {\tt lookup} method takes a city name from its string parameter 
+together with the {\tt mod} variable and generates a hash index using a 
+hash function. The code used for the hash function in this implementation 
+is provided from the assignment document. The method checks if the 
+{\tt cities} array has an empty entry at the generated index and adds a 
+city if the entry is empty. If the entry is not empty, the method then
+compares the name of the stored city to the city name from the parameter 
+for which the stored city is returned if there's a match. If the names 
+don't match then there's a collision which is handled using the {\tt next} 
+variable from the {\tt City} class to go to the next city with the same 
+index to check for a match. If no match is found by the time the tail node
+is reached, then the new city is added to the {\tt next} pointer of the 
+tail node.
+
+\begin{minted}{java}
+  public City lookup(String city){
+    Integer indx = hash(city, mod); // generate hash index
+    if(this.cities[indx] != null){ // if empty entry
+      City current = this.cities[indx]; // current city
+      City previous = null; // previous city
+      while(current != null){ // until tail node is reached
+        if(current.name.compareTo(city) == 0) return current; // if match
+        previous = current; // set previous to current
+        current = current.next; // move current to next city
+      }
+      previous.next = new City(city); // add to next of tail 
+      return previous.next; // return city
+    }
+    this.cities[indx] = new City(city); // add to empty entry
+    return this.cities[indx]; // return city
+  }
+\end{minted}
+
+Back in the constructor, the cities returned from the {\tt lookup} method
+are stored in two variables. The integer value of the distance from the 
+third column is also retrieved and stored in a variable. The {\tt connect}
+method is then run on both city variables where both cities has the same 
+distance but each other as the {\tt connect} arguments. 
+
+\begin{minted}{java}
+      City one = lookup(col[0]); // get city "from"
+      City two = lookup(col[1]); // get city "to"
+      Integer dist = Integer.valueOf(col[2]); // get distance
+      one.connect(two, dist); // connect from and to
+      two.connect(one, dist); // connect to and from
+\end{minted}
+
+\section*{Shortest path}
+
+In a new class {\tt Paths} a method {\tt shortest} was created to find the 
+shortest path between two cities. I gave up after a couple of hours of 
+trying to implement the naive version. This version has the instance 
+variables:
+\begin{itemize}
+  \item {\tt path[]} which is used to keep track of visited cities
+  \item {\tt sp} which is a pointer that points at the latest element in {\tt path}
+  \item {\tt opt} which keeps track of the most optimal path
+\end{itemize}
+The constructor declares the {\tt path} array with size 54 which is the 
+amount of different cities. The constructor also declares the variables
+{\tt sp} and {\tt opt} by setting them to {\tt 0} and {\tt null} 
+respectively. The {\tt path} array is going to work like a stack with the 
+{\tt sp} variable as its stack pointer.
+
+The {\tt shortest} method includes a {\tt Paths} variable {\tt p} as a 
+parameter which I found was necessary to reset {\tt opt} when looping the 
+method.
+
+The method first compares the {\tt City} parameters {\tt from} and {\tt to}
+and returns {\tt 0} of they match. It then checks if an optimal path exists 
+where it then checks if the {\tt time} parameter is greater than {\tt opt} 
+if it does exist. The method returns {\tt null} if the {\tt time} parameter 
+is greater than {\tt opt}. The method also returns {\tt null} if {\tt from}
+is equal to any city stored in {\tt path}. This is all to discontinue 
+unnecessary searches or to prevent entering an endless cycle.
+
+An integer {\tt shrt} is declared and the city {\tt from} is added to the
+stack. For each of the {\tt from} city's connections ({\tt conn}), the 
+{\tt time} variable (initially set to {\tt 0}) and the distance of 
+{\tt conn} is added onto {\tt shrt}. The method is then run recursively
+with the connected city {\tt conn.city} and time {\tt shrt} as arguments 
+for the respective parameters {\tt from} and {\tt time}. 
+
+The recursive method either returns {\tt null} or an integer value, but 
+either is stored in a variable {\tt dst}. If {\tt dst} is not {\tt null} 
+then it's value is added onto {\tt shrt} which the optimal path {\tt opt}
+then is set to if either no optimal path exists or the distance of 
+{\tt shrt} is less than {\tt opt}.
+
+After going through each connection of the city {\tt from} it is then 
+removed from the stack. The variable {\tt shrt} is set to as the most
+optimal path found so far ({\tt opt}) and ultimately returned.
+
+\begin{minted}{java}
+  private static Integer shortest(City from, City to, Paths p, Integer time){
+    if(from == to) return 0; // destination found
+    if(p.opt != null && time > p.opt) return null; // if time is greater than opt
+    for(int i = 0; i < p.sp; i++) // for each city in the stack
+      if(p.path[i] == from) return null; // if from is in the stack
+    Integer shrt = null; // declare shrt
+    p.path[p.sp++] = from; // add from to stack
+    for(int i = 0; i < from.size; i++){ // for each connection to from
+      Connection conn = from.neighbours[i]; // get connection
+      shrt = time + conn.distance; // time so far
+      Integer dst = shortest(conn.city, to, p, shrt); // recursive
+      if(dst != null){ // if path exists
+        shrt += dst; // add dst time onto time so far
+        if(p.opt == null || shrt < p.opt) p.opt = shrt; // if no opt path
+      }                             // exists or if shrt is faster than opt
+    }
+    p.path[p.sp--] = null; // remove from of stack
+    shrt = p.opt; // set shrt to fastet path so far
+    return shrt; // return shrt
+  }
+\end{minted}
+
+\subsection*{Benchmark}
+
+Running the benchmark for the shortest paths between the cities provided
+in the assignment document yields the results presented in table 1.
+
+\begin{table}[ht]
+  \begin{center}
+  \begin{tabular}{l|c|c|c}
+  \textbf{From} & \textbf{To} & \textbf{Distance} & \textbf{Runtime} \\
+  \hline
+  Malmö         & Göteborg    & $153 min$   & $0 ms$    \\
+  Göteborg      & Stockholm   & $211 min$   & $0 ms$    \\
+  Malmö         & Stockholm   & $273 min$   & $0 ms$    \\
+  Stockholm     & Sundsvall   & $327 min$   & $1 ms$    \\
+  Stockholm     & Umeå        & $517 min$   & $6 ms$    \\
+  Göteborg      & Sundsvall   & $515 min$   & $2 ms$    \\
+  Sundsvall     & Umeå        & $190 min$   & $180 ms$  \\
+  Umeå          & Göteborg    & $705 min$   & $0 ms$    \\
+  Göteborg      & Umeå        & $705 min$   & $4 ms$    \\
+  Malmö         & Kiruna      & $1162 min$  & $52 ms$   \\
+  \end{tabular}
+  \caption{Shortest path between cities.}
+  \label{tab:table1}
+  \end{center}
+\end{table}
+
+The method managed to find paths that I, during benchmark observations,
+believe are the shortest - or atleast close to the shortest - paths. 
+I unfortunately have no data to compare these results to. However, this 
+version of the {\tt shortest} method seem to include more efficient and/or
+comprehesive ways of finding a path compared to what I could think of for
+the naive version.
+
+Running the benchmark for the shortest paths from Malmö to all other
+cities and sorting by distance yields the results diplayed in figure 1.
+
+\begin{figure}[ht!]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      grid=both, xmin=-2, xmax=55, ymin=-50, ymax=1200,
+      major grid style={line width=.4pt,draw=gray!60},
+      xlabel={City by index}, ylabel={Distance in $ min$},
+      width=12cm, height=8cm]
+      \addplot[mark=square, smooth, color=blue] table {allDst.dat};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Distance from Malmö to cities increasingly further way.}
+  \label{fig:plot1}
+\end{figure}
+
+\section*{Discussion}
+
+The shortest path algorithm is an algorithm commonly used for the graph
+data structure. The algorithm used in this report is called the 
+depth-first-search (DFS) algorithm with the addition of the optimal path.
+The DFS algorithm has the time complexity $O(V + E)$ where $V$ is the 
+amount of vertices and $E$ is the amount of edges. The method uses this
+algorithm when searching for a path. The inclusion of optimal path 
+simply discontinues the search from a certain point when the path from 
+that point becomes longer than the shortest path found yet.
+
+\end{document}

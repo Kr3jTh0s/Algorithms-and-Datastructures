@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{City}\PYG{p}{(}\PYG{n}{String}\PYG{+w}{ }\PYG{n}{name}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{name}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{name}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// apply parameter name}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{next}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// next city is null}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{size}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// start size}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{neighbours}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Connection}\PYG{o}{[}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{size}\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// declare array}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
