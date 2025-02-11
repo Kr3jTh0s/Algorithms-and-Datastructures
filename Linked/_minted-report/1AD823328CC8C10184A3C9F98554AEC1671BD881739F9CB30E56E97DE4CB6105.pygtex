@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n+nf}{appendLinked}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{loop}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{LinkedList}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{LinkedList}\PYG{p}{(}\PYG{n}{n}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// declare a}
+\PYG{+w}{    }\PYG{n}{LinkedList}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{LinkedList}\PYG{p}{(}\PYG{n}{loop}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// declare b}
+\PYG{+w}{    }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n}{t0}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// time 1}
+\PYG{+w}{    }\PYG{n}{a}\PYG{p}{.}\PYG{n+na}{append}\PYG{p}{(}\PYG{n}{b}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// append operation}
+\PYG{+w}{    }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n}{t1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// time 2}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{t1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{t0}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// return append operation time}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

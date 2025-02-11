@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n+nf}{rndAccess}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{loop}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{array}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{o}{[}\PYG{n}{n}\PYG{o}{]}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{array}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{n}{Random}\PYG{+w}{ }\PYG{n}{rnd}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Random}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{o}{[]}\PYG{+w}{ }\PYG{n}{indx}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{o}{[}\PYG{n}{loop}\PYG{o}{]}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{loop}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{indx}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{rnd}\PYG{p}{.}\PYG{n+na}{nextInt}\PYG{p}{(}\PYG{n}{n}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{sum}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n}{t0}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{();}
+\PYG{+w}{        }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{loop}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{sum}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{array}\PYG{o}{[}\PYG{n}{indx}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]]}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n}{t1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{t1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{t0}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

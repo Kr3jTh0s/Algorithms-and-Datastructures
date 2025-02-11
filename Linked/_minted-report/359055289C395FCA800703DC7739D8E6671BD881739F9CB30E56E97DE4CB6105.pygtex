@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{append}\PYG{p}{(}\PYG{n}{LinkedList}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{Node}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{head}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// get a}
+\PYG{+w}{    }\PYG{k}{while}\PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n+na}{tail}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{.}\PYG{n+na}{tail}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// gycle to tail}
+\PYG{+w}{    }\PYG{n}{a}\PYG{p}{.}\PYG{n+na}{tail}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{.}\PYG{n+na}{head}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// connect tail of a to head of b}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{T}\PYG{+w}{ }\PYG{n+nf}{dequeue}\PYG{p}{()\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{queue}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// check empty}
+\PYG{+w}{    }\PYG{n}{Node}\PYG{+w}{ }\PYG{n}{prev}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// previous from current}
+\PYG{+w}{    }\PYG{n}{Node}\PYG{+w}{ }\PYG{n}{curr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{queue}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// current node in queue}
+\PYG{+w}{    }\PYG{k}{while}\PYG{p}{(}\PYG{n}{curr}\PYG{p}{.}\PYG{n+na}{next}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// go to last node}
+\PYG{+w}{        }\PYG{n}{prev}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{curr}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{curr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{curr}\PYG{p}{.}\PYG{n+na}{next}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n}{prev}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{queue}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// only one node}
+\PYG{+w}{    }\PYG{k}{else}\PYG{+w}{ }\PYG{n}{prev}\PYG{p}{.}\PYG{n+na}{next}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// remove from queue}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{curr}\PYG{p}{.}\PYG{n+na}{object}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// return data}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

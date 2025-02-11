@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{push}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{value}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{top}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Stack}\PYG{p}{(}\PYG{n}{value}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{top}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// makes new top node}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

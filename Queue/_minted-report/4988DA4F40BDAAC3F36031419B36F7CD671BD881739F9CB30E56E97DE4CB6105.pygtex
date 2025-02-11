@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{enqueue}\PYG{p}{(}\PYG{n}{T}\PYG{+w}{ }\PYG{n}{object}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{Node}\PYG{+w}{ }\PYG{n}{add}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Node}\PYG{p}{(}\PYG{n}{object}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// creates new node}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{back}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// check empty}
+\PYG{+w}{      }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{front}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{add}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// front is new node}
+\PYG{+w}{      }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{back}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{add}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// back is new node}
+\PYG{+w}{      }\PYG{k}{return}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// exit method}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{back}\PYG{p}{.}\PYG{n+na}{next}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{add}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// add new node to end of queue}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{back}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{add}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// back is node at the end of queue}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

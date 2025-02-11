@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{pop}\PYG{p}{()\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{val}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{top}\PYG{p}{.}\PYG{n+na}{current}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// get value}
+\PYG{+w}{    }\PYG{n}{Stack}\PYG{+w}{ }\PYG{n}{popped}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{top}\PYG{p}{.}\PYG{n+na}{previous}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// previous node}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n}{popped}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{top}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// if previous is null}
+\PYG{+w}{    }\PYG{k}{else}\PYG{+w}{ }\PYG{n}{top}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Stack}\PYG{p}{(}\PYG{n}{popped}\PYG{p}{.}\PYG{n+na}{current}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{popped}\PYG{p}{.}\PYG{n+na}{previous}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// new top node}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{val}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// return value}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

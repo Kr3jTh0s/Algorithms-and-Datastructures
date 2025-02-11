@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{T}\PYG{+w}{ }\PYG{n+nf}{dequeue}\PYG{p}{()\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{front}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// check empty}
+\PYG{+w}{    }\PYG{n}{T}\PYG{+w}{ }\PYG{n}{obj}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{front}\PYG{p}{.}\PYG{n+na}{object}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// save data}
+\PYG{+w}{    }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{front}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{front}\PYG{p}{.}\PYG{n+na}{next}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// front is the next node added}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{obj}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// return data}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
