@@ -1,0 +1,301 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} 
+
+\usepackage{minted}
+
+\begin{document}
+
+\title{
+  \textbf{Search Efficiency in Sorted Arrays in Java}
+}
+\author{Alexander Alvarez}
+\date{Fall 2024}
+
+\maketitle
+
+\section*{Introduction}
+
+The time efficiency of different search operations will be measured in 
+a sorted array with varying sizes. Two variants of the search operation
+will be tested and compared to the search time on an unsorted array.
+
+The general behaviour of these operations are to be described as well
+as how they were created and implemented.
+
+\section*{Method}
+
+We are already familiar with the search algorithm from a previous
+assignment. This report will expand on the search operation but
+include the same test methods that was used in the previous
+assignment. 
+
+The values that the operations will search for (keys) will be randomly
+generated and will not be sorted in any tests. The search methods will
+be looped where the time will be taken in intervals right before and 
+after the loop. The difference of the time intervals will be the time
+to execute the search operation a {\tt loop} amount of times. The 
+time difference divided by {\tt loop} will give the median execution 
+time for one search operation. Only the minimal time values will be 
+used for comparisons between operations due to consistency.
+
+The search methods will be run for a sufficient time before the actual 
+benchmark to enable the just-in-time compiler for time optimizations.
+
+\subsection*{Unsorted search}
+
+The unsorted search time will be the time that I will compare the
+sorted search operations to. 
+
+The unsorted search method creates two arrays ({\tt array} and 
+{\tt keys}) with randomly generated elements in a random order. The 
+pool of values that the random number generator (RNG) takes from is 
+double the size of the {\tt array}, i.e. if the {\tt array} size is 
+1000 then the pool size is 2000. The difference between the two arrays 
+is that the {\tt array} array has the varying size {\tt n} while the 
+{\tt keys} array will have the size {\tt loop}. 
+
+The created arrays are then used in the {\tt for} loop between the time 
+intervals. The element that is to be searched for ({\tt key}) is taken 
+from the {\tt keys} array for each loop iteration. The unsorted search
+operation is then used with the {\tt array} and the {\tt key} as 
+arguments.
+
+\begin{minted}{java}
+  long t0 = System.nanoTime();
+  for(int i = 0; i < loop; i++){
+      int key = keys[i];
+      unsorted_srch(array, key);
+  }
+  long t1 = System.nanoTime();
+  return (t1 - t0);
+\end{minted}
+
+The unsorted search operation is a simple {\tt for} loop that compares
+an element at a certain {\tt array} index to the {\tt key}. The 
+{\tt for} loop stops when the same value is found, but will 
+search through the whole {\tt array} if no same value was found.
+
+\begin{minted}{java}
+  public static boolean unsorted_srch(int[] array, int key){
+    for(int index = 0; index < array.length; index++){
+      if(array[index] == key) return true;
+    }
+    return false;
+  }
+\end{minted}
+
+The {\tt loop} variable is set to $ 1,000$ and the {\tt array} sizes
+start from $ 1,000$ and increases by doubling the size to $ 1,024,000$
+({\tt n =} \{1000, 2000, ..., 512000, 1024000\}). Running the code with
+these values yields the following graph:
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xmin=0, xmax=1024000, ymin=0, ymax=150,
+      xlabel=n, ylabel={time in $ ms$},
+      width=8cm, height=5cm]
+      \addplot[] table {searchUnsort.dat};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Unsorted search time}
+  \label{fig:plot1}
+\end{figure}
+
+The search time for an unsorted array with a million elements takes 
+about $ 125 \mu s$.
+
+\subsection*{Sorted search}
+
+The sorted search method is almost identical to the unsorted search 
+method with the differences being:
+
+\begin{itemize}
+  \item an added method to create a sorted array
+  
+  \item a change in the condition of the search operation
+  
+  \item an adjustment to the RNG pool
+\end{itemize}
+
+The elements of {\tt array} were randomly generated in a random order 
+in the unsorted search method. This time a method is created that 
+still randomly generates the elements but every next element has a 
+greater value than the previous.
+
+The sort array method has a {\tt for} loop that generates a 
+random value from 0 to 10 and stores it in the {\tt nxt} variable in 
+each iteration. The {\tt nxt} variable increases with the sum of the
+random value plus the value of the {\tt nxt} variable from the 
+previous iteration. This makes it so that the {\tt nxt} variable has a 
+greater value in every next iteration while maintaining the RNG. 
+However, duplicates may still occur if the RNG generates the number 0. 
+To solve this we add 1 to the sum which makes the {\tt nxt} variable 
+atleast 1 value greater in every next iteration.
+
+\begin{minted}{java}
+  public static int[] sort_array(int n, Random rnd){
+    int[] array = new int[n];
+    int nxt = 0;
+    for(int i = 0; i < n; i++){
+      nxt += rnd.nextInt(10) + 1;
+      array[i] = nxt; 
+    }
+    return array;
+  }
+\end{minted}
+
+The sorted search operation is almost the same as the
+{\tt unsorted\_srch} operation from earlier. The sorted search 
+operation is however optimized by one change in the condition of the 
+{\tt if} statement. The {\tt if} statement will stop the search loop 
+if the value of an element is the same or greater than the {\tt key}. 
+This is because the {\tt key} wont be found when every next element is 
+greater than the {\tt key} now that the {\tt array} is sorted.
+
+The RNG pool is the same for both arrays in the unsorted search method
+which is double the size of {\tt n}. The sort array method complicates
+this in the sorted search method because it has an RNG pool of 10 times 
+the size of {\tt n} - i.e. the maximum value is $ 10 \times n$ if the 
+RNG always generates the greatest value which is highly unlikely. For
+consistency I chose the RNG pool for the {\tt keys} to be 10 times the
+size of {\tt n}.
+
+Running the code for the sorted search method with the same values
+as the unsorted search benchmark ({\tt loop =} $1000$ and 
+{\tt n =} \{1000, 2000, ..., 512000, 1024000\}) yields the following 
+graph:
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xmin=0, xmax=1024000, ymin=0, ymax=150,
+      xlabel=n, ylabel={time in $ ms$},
+      width=8cm, height=5cm]
+      \addplot[] table {searchSort.dat};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Sorted search time}
+  \label{fig:plot2}
+\end{figure}
+
+The search time for a sorted array with a million elements takes about 
+$ 114 \mu s$.
+
+\subsection*{Binary search}
+
+The binary search method is very similar to the sorted search method
+with the only difference being the usage of a whole different search 
+algorithm.
+
+The search algorithm in question is the binary search algorithm which
+checks the middle element and systematically divides the {\tt array} 
+in halves until the {\tt key} is found. This is done by having a two
+variables ({\tt first} and {\tt last}) respectively pointing at the 
+first and last index of the array. A {\tt while(true)} loop is then
+made with four {\tt if} statements and a {\tt middle} variable that 
+points to the element in the middle between the {\tt first} and 
+{\tt last} index pointers. 
+
+The search loop stops if the value of the {\tt middle} element is the 
+same as the {\tt key}. If the {\tt middle} element is less than both
+the {\tt key} and {\tt last} pointer - i.e. if the {\tt key} may be 
+further to the {\tt last} pointer - then the {\tt first} pointer will 
+point to where {\tt middle} is pointing and {\tt middle} will point to 
+a new middle between {\tt first} and {\tt last}. Similarly, if 
+{\tt middle} is greater than {\tt key} and {\tt first} - i.e. if the 
+{\tt key} may be further to the {\tt first} pointer - then {\tt last} 
+will point to the {\tt middle} element. When the {\tt middle} element 
+is not the {\tt key}, the {\tt first} and {\tt last} pointers will
+actually point to one index above and under {\tt middle} respectively 
+to not include that {\tt middle} element that didn't have the 
+{\tt key}. The search loop is stopped if no {\tt key} is found under
+the conditions of the {\tt if} statements.
+
+\begin{minted}{java}
+  public static boolean binary_srch(int[] array, int key){
+        int first = 0;
+        int last = array.length - 1;
+        while(true){
+            int middle = (first + last)/2;
+            if(array[middle] == key) return true;
+            if(array[middle] < key && middle < last){
+                first = middle + 1;
+                continue;
+            }
+            else if(array[middle] > key && middle > first){
+                last = middle - 1;
+                continue;
+            }
+            else return false;
+        }
+    }
+\end{minted}
+
+Running the code for the binary search method with the same values
+from the two previous benchmarks yields the following graph: 
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      xmin=0, xmax=1024000, ymin=20, ymax=100,
+      xlabel=n, ylabel={time in $ ns$},
+      width=8cm, height=5cm]
+      \addplot[] table {searchBin.dat};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Binary search time}
+  \label{fig:plot3}
+\end{figure}
+
+The binary search time for a sorted array with a million elements takes 
+about $ 93 ns$. The binary search algorithm divides the {\tt array} in
+half every time it checks for the {\tt key}. This means that $ n$ is 
+divided by $ 2^k$ where $ k$ is the number of checks until no more 
+subarrays can be created. A function that roughly describes the 
+execution time on an array of size $ n$: 
+$$ O(log(n))$$
+
+Looking at the graph, I estimated the time to search through an array
+with 64 million elements to take no more than $ 300 ns$. My optimistic
+guess was undeniably crushed by the output time I got from the test
+which was more than double my guessed time at roughly $ 650 ns$.
+
+\section*{Conclusion}
+
+The time of the sorted search method compared to that of the unsorted 
+search method shows a slight increase in performance. Decreasing the
+RNG pool for the {\tt keys} array to the median max value of the last
+element in the {\tt array} array improves the performance even more.
+However, those results may be skewed in a way that is inaccurate which
+is why they were not included to be compared.
+
+The slight increase in performance of the sorted search method may
+likely prove useful in cases where an array is already sorted. The 
+same can not be said if the array is unsorted for which the increased
+performance does not outweigh the cost of sorting the array.
+
+The binary search method shows a significant increase in performance
+compared to both the sorted and unsorted search methods. The 
+performance of the binary search method increases exponentially as
+the array size grows larger compared to the other two methods that has
+has a linear performance. This makes the binary searh method a highly 
+viable option for searching through arrays with huge sizes. The 
+significantly increased performance overall likely outweighs the cost 
+of sorting an unsorted array.
+
+There is an overall increase in searching through data that is already
+sorted.
+
+\end{document}

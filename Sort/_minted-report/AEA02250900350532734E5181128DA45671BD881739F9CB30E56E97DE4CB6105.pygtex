@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n}{t0}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// time 1}
+\PYG{+w}{  }\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{loop}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{// cycles through each 1D array}
+\PYG{+w}{    }\PYG{n}{selection\PYGZus{}sort}\PYG{p}{(}\PYG{n}{array}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// sorts that 1D array}
+\PYG{+w}{  }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{n}{t1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{nanoTime}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// time 2}
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{t1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{t0}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// returns difference between time 2 and 1}
+\end{Verbatim}
